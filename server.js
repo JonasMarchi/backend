@@ -22,7 +22,7 @@ app.get("/usuarios", (req, res) =>{
 });
 
 //get com parametro("filtro")
-app.get("/usuario/:id", (req, res) =>{
+app.get("/usuario/:id", (req, res) => {
     const id = Number(req.params.id);
 
     const usuario = usuarios.find(u => u.id === id);
@@ -58,24 +58,27 @@ app.post("/cadastro", (req, res) =>{
 })
 
 //Put - editar usuario
-app.put("/editar/:id", (req, res) =>{
+app.put("/editar/:id", (req, res) => {
     const id = Number(req.params.id);
-    const{nome, email } = req.body;
+    const{ nome, email } = req.body;
     const usuario = usuarios.find(u => u.id === id);
     if(!usuario){
         return res.status(404).json({
             mensagem: "Usuário não encontrado"
         });
     }
-    req.json({
+
+    if(nome) usuario.nome = nome; // criei
+    if(email) usuario.email = email; // criei
+
+    res.json({
         mensagem: "Usuário editado com sucesso!",
         usuario
     })
 });
 
 //Delete - deletar usuario
-
-app.delete("/deletar/id:", (req, res) => {
+app.delete("/deletar/:id", (req, res) => {
     const id = Number(req.params.id);
     const index = usuarios.findIndex(u => u.id === id);
     if(index === -1 ){

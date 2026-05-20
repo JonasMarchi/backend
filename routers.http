@@ -1,0 +1,27 @@
+get http://localhost:3000/
+
+###Get do usuários
+get http://localhost:3000/usuarios
+
+### get com id filtro
+get http://localhost:3000/usuario/1
+
+### criar um novo usuário
+post http://localhost:3000/cadastro
+Content-Type: application/json
+
+{
+    "nome": "Pedro",
+    "email": "pedro@gmail.com"
+}
+
+### PUT
+put http://localhost:3000/editar/1
+Content-Type: application/json
+
+{
+    "nome": "João Atualizado"
+}
+
+### deletar
+delete http://localhost:3000/deletar/1
